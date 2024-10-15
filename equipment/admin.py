@@ -11,8 +11,6 @@ import tablib
 
 # класс для загрузки/выгрузки  типа/модификации
 class MeasurEquipmentCharaktersResource(resources.ModelResource):
-    to_encoding = 'utf-8-sig'
-    from_encoding = 'utf-8-sig'
     class Meta:
         model = MeasurEquipmentCharakters
         
