@@ -111,7 +111,7 @@ admin.site.register(Bookmarks, BookmarksAdmin)
 # история семьи классы для отображения в админке
 
 # класс для загрузки/выгрузки история семьи
-class BFamilyResource(resources.ModelResource):
+class FamilyResource(resources.ModelResource):
     class Meta:
         model = Family
 
