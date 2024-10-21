@@ -19,4 +19,6 @@ urlpatterns = [
     path('kareliahistory/searchresult/', views.KareliahistorySearchResultView.as_view(), name='kareliahistorysearchresult'),
     path('bm/searchresult/', views.BMSearchResultView.as_view(), name='bmsearchresult'),
     path('example', views.ExampleTemplateView.as_view(), name='example'),
+    path('family', views.FamilyListView.as_view(), name='family'),
+    path('family/searchresult/', views.FamilySearchResultView.as_view(), name='familysearchresult'),
     ] 
