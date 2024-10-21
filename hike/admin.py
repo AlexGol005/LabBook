@@ -68,7 +68,7 @@ class HikeResource(resources.ModelResource):
 
 # класс добавления стилей к окну текст хайкинг
 class HikeAdminForm(forms.ModelForm):
-    text = forms.CharField(label="Текст", widget=CKEditorUploadingWidget())
+    travel_details = forms.CharField(label="Подробности", widget=CKEditorUploadingWidget())
     class Meta:
         model = Hike
         fields = '__all__'
