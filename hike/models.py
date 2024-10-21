@@ -105,3 +105,19 @@ class Kareliahistory(models.Model):
     class Meta:
         verbose_name = 'История Карелии'
         verbose_name_plural = 'История Карелии'
+
+
+
+class Family(models.Model):
+    type = models.CharField('Заголовок', max_length=10000, blank=True,  null=True, default='любой')
+    text = models.TextField('Текст', blank=True, null=True)
+    vk = models.CharField('Ссылка', max_length=10000, blank=True, null=True)
+    photo = models.ImageField('Фото', upload_to='user_images', blank=True, null=True,
+                                        default='user_images/default1.png')
+
+    def __str__(self):
+        return f'№ {self.pk} -  {self.type}'
+
+    class Meta:
+        verbose_name = 'Закладки семья'
+        verbose_name_plural = 'Закладки семья'
