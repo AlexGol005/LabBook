@@ -106,3 +106,28 @@ class BookmarksAdmin(ImportExportActionModelAdmin):
 
 # фиксация формы в админке закладки по темам
 admin.site.register(Bookmarks, BookmarksAdmin)
+
+
+# история семьи классы для отображения в админке
+
+# класс для загрузки/выгрузки история семьи
+class BFamilyResource(resources.ModelResource):
+    class Meta:
+        model = Family
+
+# класс добавления стилей к окну текст история семьи
+class FamilyAdminForm(forms.ModelForm):
+    text = forms.CharField(label="Текст", widget=CKEditorUploadingWidget())
+    class Meta:
+        model = Family
+        fields = '__all__'
+
+# класс подробностей история семьи
+class FamilyAdmin(ImportExportActionModelAdmin):
+    resource_class = FamilyResource
+    list_display = ('pk', 'text')
+    search_fields = ['pk', 'text']
+    form = FamilyAdminForm
+
+# фиксация формы в админке история семьи
+admin.site.register(Family, FamilyAdmin)
