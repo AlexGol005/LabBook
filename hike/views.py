@@ -249,3 +249,34 @@ def readyhikefilterview(request, rk):
     pk = 0
     qk = 0
     return render(request,  "hike/mainlist.html", {'objects': objects, 'form':form, 'pk': pk , 'qk': qk, 'rk': rk})
+
+
+
+class FamilyListView(ListView):
+    """ Выводит список всех закладок по истории семьи """
+    model = Family
+    template_name = 'hike/family.html'
+    context_object_name = 'objects'
+    ordering = ['-pk']
+    paginate_by = 6
+    def get_context_data(self,**kwargs):
+        context = super(FamilyListView,self).get_context_data(**kwargs)
+        context['form'] = SearchForm()
+        return context
+
+class FamilySearchResultView(TemplateView):
+    """ Представление, которое выводит результаты поиска по истории семьи """
+
+    template_name = 'hike/family.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(FamilySearchResultView, self).get_context_data(**kwargs)
+        searchword = self.request.GET['searchword']
+        if self.request.GET['searchword']:
+            searchword1 = self.request.GET['searchword'][0].upper() + self.request.GET['searchword'][1:]
+        if searchword:
+            objects = Family.objects.\
+            filter(Q(text__icontains=searchword)|Q(text__icontains=searchword1)).order_by('pk')
+            context['objects'] = objects
+            context['form'] = SearchForm(initial={'searchword': searchword})
+        return context
