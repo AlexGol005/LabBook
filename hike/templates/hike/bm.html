@@ -49,7 +49,7 @@
 
                     
                 <p>    {% if not obj.done  %}
-                        <form method="post" name={{obj.vk}}>
+                        <form method="post" value="{{obj.id}}" name="my_object">
                             {% csrf_token %}
                             {{ form.as_p }}
                             <button class="btn btn-outline-warning" type="submit">Ok</button>
