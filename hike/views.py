@@ -57,6 +57,7 @@ class BMAllListView(View):
         form = UdateForm(request.POST)
         if form.is_valid():
             order = form.save(commit=False)
+            order.pk = pks
             return redirect(order)
 
 
