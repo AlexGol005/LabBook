@@ -42,24 +42,23 @@ class HikeAllListView(ListView):
 
 
 
-class BMAllListView(ListView):
+class BMAllListView(View):
     """ Выводит список всех закладок на разные темы """
-    model = Bookmarks
-    template_name = 'hike/bm.html'
-    context_object_name = 'objects'
-    ordering = ['-pk']
-    paginate_by = 6
-    def get_queryset(self):
-        return Bookmarks.objects.filter(done=False).order_by('-pk')
-    def get_context_data(self,**kwargs):
-        context = super(BMAllListView,self).get_context_data(**kwargs)
-        context['form'] = UdateForm()
-        context['sform'] = SearchForm() 
-        return context
 
-    def form_valid(self, form):
-        order = form.save(commit=False)
-        return redirect(order)
+    def get(self, request, str):
+        objects = Bookmarks.objects.filter(done=False).order_by('-pk')
+        form = UdateForm()
+        sform = SearchForm() 
+        return render(request, 'hike/bm.html', {'form': form, 'sform': sform, 'objects': objects, })
+
+    def post(self, request, str, *args, **kwargs):
+        form = UdateForm(request.POST)
+        if form.is_valid():
+            order = form.save(commit=False)
+            return redirect(order)
+
+
+
 
 class BMSearchResultView(TemplateView):
     """ Представление, которое выводит результаты поиска по истории Карелии """
