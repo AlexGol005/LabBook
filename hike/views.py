@@ -59,7 +59,7 @@ class BMAllListView(View):
         form = UdateForm(request.POST, instance=note1)
         if form.is_valid():
             order = form.save(commit=False)
-            return redirect(order)
+            return redirect(f'hike/bm')
 
 
 
