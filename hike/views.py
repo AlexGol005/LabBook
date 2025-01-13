@@ -2,6 +2,7 @@ from datetime import date
 
 from django.shortcuts import render
 import pandas as pd
+from django.views import View
 from django.views.generic import ListView, CreateView
 
 from django.db.models import Q
