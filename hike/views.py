@@ -46,13 +46,13 @@ class HikeAllListView(ListView):
 class BMAllListView(View):
     """ Выводит список всех закладок на разные темы """
 
-    def get(self, request, str):
+    def get(self, request):
         objects = Bookmarks.objects.filter(done=False).order_by('-pk')
         form = UdateForm()
         sform = SearchForm() 
         return render(request, 'hike/bm.html', {'form': form, 'sform': sform, 'objects': objects, })
 
-    def post(self, request, str, *args, **kwargs):
+    def post(self, request, *args, **kwargs):
         form = UdateForm(request.POST)
         if form.is_valid():
             order = form.save(commit=False)
