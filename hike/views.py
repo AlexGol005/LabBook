@@ -54,10 +54,11 @@ class BMAllListView(View):
         return render(request, 'hike/bm.html', {'form': form, 'sform': sform, 'objects': objects, })
 
     def post(self, request, *args, **kwargs):
-        form = UdateForm(request.POST)
+        object_ids = request.POST.getlist('my_object')
+        note1 = Equipment.objects.get(id__in=object_ids) 
+        form = UdateForm(request.POST, instance=note1)
         if form.is_valid():
             order = form.save(commit=False)
-            order.pk = name
             return redirect(order)
 
 
