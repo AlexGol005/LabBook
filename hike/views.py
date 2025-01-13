@@ -57,6 +57,10 @@ class BMAllListView(ListView):
         context['sform'] = SearchForm() 
         return context
 
+    def form_valid(self, form):
+        order = form.save(commit=False)
+        return redirect(order)
+
 class BMSearchResultView(TemplateView):
     """ Представление, которое выводит результаты поиска по истории Карелии """
 
