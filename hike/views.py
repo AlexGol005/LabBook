@@ -55,7 +55,7 @@ class BMAllListView(View):
 
     def post(self, request, *args, **kwargs):
         object_ids = request.POST.getlist('my_object')
-        note1 = Bookmarks.objects.get(id__in=object_ids) 
+        note1 = Bookmarks.objects.get(id=168) 
         form = UdateForm(request.POST, instance=note1)
         if form.is_valid():
             order = form.save(commit=False)
