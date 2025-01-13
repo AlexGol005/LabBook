@@ -53,11 +53,11 @@ class BMAllListView(View):
         sform = SearchForm() 
         return render(request, 'hike/bm.html', {'form': form, 'sform': sform, 'objects': objects, })
 
-    def post(self, request, pks, *args, **kwargs):
+    def post(self, request, *args, **kwargs):
         form = UdateForm(request.POST)
         if form.is_valid():
             order = form.save(commit=False)
-            order.pk = pks
+            order.pk = name
             return redirect(order)
 
 
