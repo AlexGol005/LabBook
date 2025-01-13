@@ -48,13 +48,13 @@
             <br> </p>
 
                     
-                <p>    {% if not done  %}
+                <p>    {% if not obj.fixation  %}
                         <form method="post" >
                             {% csrf_token %}
                             {{ form.as_p }}
                             <button class="btn btn-outline-warning" type="submit">Ok</button>
                         </form>
-                    {% elif note.fixation %}
+                    {% elif obj.fixation %}
                         Ok
                     {% else %}
                         Ok
